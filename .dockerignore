@@ -1,0 +1,10 @@
+.git
+.github
+.gitignore
+.dockerignore
+node_modules
+vendor
+test_install_page*.webp
+verify_install_result*.webp
+nouriq_installation_results*.png
+click_feedback*.png

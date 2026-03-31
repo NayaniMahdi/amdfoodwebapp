@@ -8,13 +8,18 @@ class Database {
     private static $instance = null;
     private $pdo;
     
-    private $host = 'localhost';
-    private $dbname = 'nouriq_db';
-    private $username = 'root';
-    private $password = '';
+    private $host;
+    private $dbname;
+    private $username;
+    private $password;
     private $charset = 'utf8mb4';
 
     private function __construct() {
+        // Read from environment variables if set, otherwise fallback to local defaults
+        $this->host = getenv('DB_HOST') ?: 'localhost';
+        $this->dbname = getenv('DB_NAME') ?: 'nouriq_db';
+        $this->username = getenv('DB_USER') ?: 'root';
+        $this->password = getenv('DB_PASS') ?: '';
         try {
             $dsn = "mysql:host={$this->host};dbname={$this->dbname};charset={$this->charset}";
             $options = [
